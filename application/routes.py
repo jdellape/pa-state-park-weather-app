@@ -2,12 +2,7 @@ from application import app, db
 from flask import json, render_template
 
 @app.route("/")
-@app.route("/index")
-def index():
-    return "<h1>HELLO WORLD!</h1>"
-
-#class Park(db.Document):
-@app.route("/db")
+@app.route("/home")
 def db_info():
     
     documents = db.Park.find().sort("distance", 1)
