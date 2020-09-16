@@ -30,25 +30,29 @@
 
 <div id="flip-scroll"> 
     <table id="forecast_table">
-        <tr>
-            <th>Park Name</th>
-            {% for date in date_headers %}
-                <th>{{date}}</th>
+        <thead>
+            <tr>
+                <th>Park Name</th>
+                {% for date in date_headers %}
+                    <th>{{date}}</th>
+                {%endfor%}
+            </tr>
+        </thead>
+        <tbody>
+            {% for park_name in park_names %}
+            <tr>
+                <td class="park_name">{{park_name}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][0]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][1]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][2]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][3]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][4]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][5]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][6]}}</td>
+                <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][7]}}</td>
+            </tr>
             {%endfor%}
-        </tr>
-        {% for park_name in park_names %}
-        <tr>
-            <td class="park_name">{{park_name}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][0]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][1]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][2]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][3]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][4]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][5]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][6]}}</td>
-            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][7]}}</td>
-        </tr>
-        {%endfor%}
+        </tbody>
     </table>
 </div> 
 </body>
