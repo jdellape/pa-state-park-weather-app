@@ -6,11 +6,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}"/>
+
+    <!-- Create a script to make background color of cell red if chance rain >= .7. Make yellow if >= .3 -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#forecast_table td.chance_rain').each(function(){
+            var chance_rain = parseFloat($(this).text());
+            if (chance_rain >= 0.7) {
+                $(this).css('background-color','#f00');
+            }
+            else if (chance_rain >= 0.3)
+            {
+                $(this).css('background-color','#FFFF00');
+            }
+        });
+    });
+
+    </script>
 </head>
 <body>
 
-<h1>Here Are Your Weather Forecasts</h1>
-    <table>
+<div id="flip-scroll"> 
+    <table id="forecast_table">
         <tr>
             <th>Park Name</th>
             {% for date in date_headers %}
@@ -19,17 +38,18 @@
         </tr>
         {% for park_name in park_names %}
         <tr>
-            <td>{{park_name}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][0]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][1]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][2]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][3]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][4]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][5]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][6]}}</td>
-            <td>{{chances_of_rain_list_of_lists[loop.index0][7]}}</td>
+            <td class="park_name">{{park_name}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][0]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][1]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][2]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][3]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][4]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][5]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][6]}}</td>
+            <td class="chance_rain">{{chances_of_rain_list_of_lists[loop.index0][7]}}</td>
         </tr>
         {%endfor%}
     </table>
+</div> 
 </body>
 </html>
